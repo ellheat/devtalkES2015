@@ -33,18 +33,7 @@ export class APIResource {
     });
 
     const headers = (state) => {
-      const headers = {...options.headers};
-      const authToken = state.getIn(['user', 'authToken']);
-
-      if (authToken) {
-        headers.Authorization = `Token ${authToken}`;
-      }
-
-      if (json) {
-        headers['Content-Type'] = 'application/json';
-      }
-
-      return headers;
+      return {...options.headers};
     };
 
     const getBody = () => {

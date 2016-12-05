@@ -28,8 +28,8 @@ export class AppLayout extends Component {
 
         <Drawer open={this.state.open} docked={false} onRequestChange={(open) => this.setState({open})}>
           {
-            this.links.map(({title = 'Some title', url = '/'} = {}) => (
-                <MenuItem onTouchTap={() => this.handleClose()}>
+            this.links.map(({title = 'Some title', url = '/'} = {}, key) => (
+                <MenuItem key={key} onTouchTap={() => this.handleClose()}>
                   <Link to={url}>{title}</Link>
                 </MenuItem>
               )

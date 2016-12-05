@@ -11,6 +11,9 @@ import ReactGA from 'react-ga';
 import envConfig from 'env-config';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import configureStore from './src/modules/configureStore';
 import {IntlProvider, addLocaleData} from './src/modules/utils';
@@ -58,9 +61,11 @@ function startApp() {
 
   ReactDOM.render(
     <Provider store={store}>
-      <IntlProvider locale="en">
-        <Router history={syncedBrowserHistory} routes={routes}/>
-      </IntlProvider>
+      <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+        <IntlProvider locale="en">
+          <Router history={syncedBrowserHistory} routes={routes}/>
+        </IntlProvider>
+      </MuiThemeProvider>
     </Provider>,
     reactRoot
   );

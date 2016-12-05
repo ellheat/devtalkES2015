@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {App} from './app.component';
+import {Home} from './home.component';
 
-function mapStateToProps(store) {
+function mapStateToProps() {
   return {
 
   };
@@ -17,4 +17,4 @@ function mapActionsToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(App);
+export default connect(mapStateToProps, mapActionsToProps)(Home);

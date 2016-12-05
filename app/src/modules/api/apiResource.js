@@ -32,7 +32,7 @@ export class APIResource {
       search: false
     });
 
-    const headers = (state) => {
+    const headers = () => {
       return {...options.headers};
     };
 

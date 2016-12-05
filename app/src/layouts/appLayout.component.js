@@ -10,7 +10,7 @@ export class AppLayout extends Component {
     return (
       <section className="app-layout">
         <AppBar title="ESSports"
-                  iconClassNameRight="muidocs-icon-navigation-expand-more"/>
+                iconClassNameRight="muidocs-icon-navigation-expand-more"/>
 
         {this.props.children}
       </section>

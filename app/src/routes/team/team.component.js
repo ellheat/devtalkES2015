@@ -5,10 +5,20 @@ export class Team extends Component {
     this.props.getTeam(66);
   }
 
+  shouldComponentUpdate() {
+    if (this.props.team._root) {
+      this.name = this.props.team._root.entries[0][0].name;
+      this.crestUrl = this.props.team._root.entries[0][0].crestUrl;
+      return true;
+    }
+    return false;
+  }
+
   render() {
     return (
       <div className="team">
-        Team
+        {this.name}
+        <img src={this.crestUrl} alt="sdfds"/>
       </div>
     );
   }

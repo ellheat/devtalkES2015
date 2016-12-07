@@ -16,7 +16,7 @@ export class CompetitionTable extends Component {
     }
     return (
       <section className='competitions-table'>
-        <Table allRowsSelected={true}>
+        <Table allRowsSelected={false}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
               <TableHeaderColumn>Name</TableHeaderColumn>

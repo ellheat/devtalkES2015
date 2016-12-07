@@ -12,9 +12,8 @@ export class Team extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const compareProps = ['team', 'players', 'randomPlayer'];
-    console.log(this.props.randomPlayer);
     if (nextProps.players !== this.props.players) {
-      this.props.setRandomPlayer(this.getRandomPlayer(nextProps.players))
+      this.props.setRandomPlayer(this.getRandomPlayer(nextProps.players));
     }
     return shallowCompare({
       props: pick(this.props, compareProps)
@@ -42,7 +41,7 @@ export class Team extends Component {
       <div className="team">
         <img style={{...logoStyle}} src={this.props.team.crestUrl} alt=""/>
         <div>{this.props.team.name}</div>
-        <div>{this.props.randomPlayer.name}</div>
+        <div>Random player: {this.props.randomPlayer.name}</div>
       </div>
     );
   }

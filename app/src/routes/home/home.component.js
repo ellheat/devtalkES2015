@@ -11,7 +11,7 @@ export class Home extends Component {
     return (
       <div className="home">
         <h1 style={{...headerStyle}}>
-          <FormattedMessage id="someMsg"/>
+          <FormattedMessage id="es6"/>
         </h1>
 
         <Paper zDepth={1}>
@@ -21,3 +21,5 @@ export class Home extends Component {
     );
   }
 }
+
+Home.PropTypes = {};

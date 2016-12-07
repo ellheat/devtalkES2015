@@ -1,5 +1,4 @@
 import {CALL_API} from 'redux-api-middleware';
-import envConfig from '../../environment/base';
 
 import API from '../api';
 
@@ -12,11 +11,7 @@ export const TEAM_LIST_FAILURE = 'TEAM_LIST_FAILURE';
 export function getTeamList(id) {
   return {
     [CALL_API]: teamResource.get(`competitions/${id}/teams`, {
-      types: [TEAM_LIST_REQUEST, TEAM_LIST_SUCCESS, TEAM_LIST_FAILURE],
-      headers: {
-        'X-Auth-Token': envConfig.token
-      },
-      credentials: 'same-origin'
+      types: [TEAM_LIST_REQUEST, TEAM_LIST_SUCCESS, TEAM_LIST_FAILURE]
     })
   };
 }
@@ -28,11 +23,7 @@ export const TEAM_FAILURE = 'TEAM_FAILURE';
 export function getTeam(id) {
   return {
     [CALL_API]: teamResource.get(`${id}`, {
-      types: [TEAM_REQUEST, TEAM_SUCCESS, TEAM_FAILURE],
-      headers: {
-        'X-Auth-Token': envConfig.api.xAuthToken
-      },
-      credentials: 'same-origin'
+      types: [TEAM_REQUEST, TEAM_SUCCESS, TEAM_FAILURE]
     })
   };
 }

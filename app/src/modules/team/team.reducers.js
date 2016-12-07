@@ -14,6 +14,6 @@ export const teamReducer = createReducer(initialState, {
     });
   },
   [TEAM_SUCCESS](state, {payload}) {
-    return state.get('single').set(payload.id, payload);
+    return state.setIn(['single'], payload);
   }
 });

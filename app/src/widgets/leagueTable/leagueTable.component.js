@@ -5,14 +5,25 @@ import {isArray} from 'lodash';
 export class LeagueTable extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      league: this.props.league
+    };
+  }
+
+  showOnlyFirstPosition() {
+    this.state.league = [this.state.league.find(data => {
+      return data.rank ? data.rank === 1 : data.position === 1;
+    })];
+    this.forceUpdate();
   }
 
   render() {
-    if (!isArray(this.props.league)) {
+    if (!isArray(this.state.league)) {
       return null;
     }
     return (
       <section className='competitions-table'>
+        <button onClick={this.showOnlyFirstPosition.bind(this)}>Show only first position</button>
         <Table allRowsSelected={false}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
@@ -24,7 +35,7 @@ export class LeagueTable extends Component {
             </TableRow>
           </TableHeader>
           <TableBody stripedRows={true} displayRowCheckbox={false}>
-            {this.props.league.map(({teamName, team, position, rank, goals, playedGames, points}, i) => {
+            {this.state.league.map(({teamName, team, position, rank, goals, playedGames, points}, i) => {
               return (
                 <TableRow key={i}>
                   <TableRowColumn>{position || rank}</TableRowColumn>

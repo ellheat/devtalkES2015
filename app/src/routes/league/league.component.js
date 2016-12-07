@@ -6,7 +6,11 @@ import Paper from 'material-ui/Paper';
 
 import {LeagueTable} from '../../widgets/leagueTable';
 
-const headerStyle = {textAlign: 'center'};
+const headerStyle = {
+  textAlign: 'center',
+  margin: '0',
+  padding: '20px'
+};
 
 export class League extends Component {
   componentDidMount() {

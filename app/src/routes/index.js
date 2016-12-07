@@ -6,6 +6,7 @@ import HomeRoute from './home';
 import TeamRoute from './team';
 import CompetitionRoute from './competition';
 import CompetitionsRoute from './competitions';
+import LeagueRoute from './league';
 import AppLayout from '../layouts/appLayout.container';
 
 export default (
@@ -15,6 +16,7 @@ export default (
       {TeamRoute}
       {CompetitionRoute}
       {CompetitionsRoute}
+      {LeagueRoute}
     </Route>
   </Route>
 );

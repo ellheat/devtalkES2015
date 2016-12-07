@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {isArray} from 'lodash';
 
 export class ES2015Table extends Component {
   constructor(props) {
@@ -7,41 +8,38 @@ export class ES2015Table extends Component {
   }
 
   render() {
-    return (
-      <section className='es2015-table'>
-        <Table allRowsSelected={true}>
-          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-            <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody stripedRows={true} displayRowCheckbox={false}>
-            <TableRow>
-              <TableRowColumn>1</TableRowColumn>
-              <TableRowColumn>John Smith</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>2</TableRowColumn>
-              <TableRowColumn>Randal White</TableRowColumn>
-              <TableRowColumn>Unemployed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>3</TableRowColumn>
-              <TableRowColumn>Stephanie Sanders</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-            <TableRow>
-              <TableRowColumn>4</TableRowColumn>
-              <TableRowColumn>Steve Brown</TableRowColumn>
-              <TableRowColumn>Employed</TableRowColumn>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </section>
-    );
+    if (isArray(this.props.competitions)) {
+      return (
+        <section className='es2015-table'>
+          <Table allRowsSelected={true}>
+            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+              <TableRow>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>League</TableHeaderColumn>
+                <TableHeaderColumn>Number of games</TableHeaderColumn>
+                <TableHeaderColumn>Number of matchdays</TableHeaderColumn>
+                <TableHeaderColumn>Number of teams</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody stripedRows={true} displayRowCheckbox={false}>
+              {this.props.competitions.map((data, i) => {
+                const {league, caption, numberOfGames, numberOfMatchdays, numberOfTeams} = data;
+                return (
+                  <TableRow key={i}>
+                    <TableRowColumn>{caption}</TableRowColumn>
+                    <TableRowColumn>{league}</TableRowColumn>
+                    <TableRowColumn>{numberOfGames}</TableRowColumn>
+                    <TableRowColumn>{numberOfMatchdays}</TableRowColumn>
+                    <TableRowColumn>{numberOfTeams}</TableRowColumn>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </section>
+      );
+    }
+    return false;
   }
 }
 

@@ -1,26 +1,31 @@
 import React, {Component, PropTypes} from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
+import pick from 'lodash/pick';
 
 export class Team extends Component {
   componentDidMount() {
     this.props.getTeam(66);
   }
 
-  shouldComponentUpdate() {
-    if (this.props.team._root) {
-      this.name = this.props.team._root.entries[0][0].name;
-      this.crestUrl = this.props.team._root.entries[0][0].crestUrl;
-      return true;
-    }
-    return false;
+  shouldComponentUpdate(nextProps, nextState) {
+    const compareProps = ['team'];
+    return shallowCompare({
+      props: pick(this.props, compareProps),
+      state: this.state
+    }, pick(nextProps, compareProps), nextState);
   }
 
   render() {
-    return (
-      <div className="team">
-        {this.name}
-        <img src={this.crestUrl} alt="sdfds"/>
-      </div>
-    );
+    if (this.props.team) {
+      return (
+        <div className="team">
+          <img src={this.props.team.crestUrl} alt=""/>
+          <div>{this.props.team.name}</div>
+          <div>{this.props.team.squadMarketValue}</div>
+        </div>
+      );
+    }
+    return false;
   }
 }
 

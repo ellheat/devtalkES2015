@@ -4,6 +4,23 @@ import envConfig from '../../environment/base';
 import API from '../api';
 
 const teamResource = API('teams');
+const competitionsResource = API('competitions');
+
+export const COMPETITIONS_REQUEST = 'COMPETITIONS_REQUEST';
+export const COMPETITIONS_SUCCESS = 'COMPETITIONS_SUCCESS';
+export const COMPETITIONS_FAILURE = 'COMPETITIONS_FAILURE';
+
+export function getCompetitions() {
+  return {
+    [CALL_API]: competitionsResource.get('?season=2016', {
+      types: [COMPETITIONS_REQUEST, COMPETITIONS_SUCCESS, COMPETITIONS_FAILURE],
+      headers: {
+        'X-Auth-Token': envConfig.api.xAuthToken
+      },
+      credentials: 'same-origin'
+    })
+  };
+}
 
 export const TEAM_LIST_REQUEST = 'TEAM_LIST_REQUEST';
 export const TEAM_LIST_SUCCESS = 'TEAM_LIST_SUCCESS';
@@ -14,7 +31,7 @@ export function getTeamList(id) {
     [CALL_API]: teamResource.get(`competitions/${id}/teams`, {
       types: [TEAM_LIST_REQUEST, TEAM_LIST_SUCCESS, TEAM_LIST_FAILURE],
       headers: {
-        'X-Auth-Token': envConfig.token
+        'X-Auth-Token': envConfig.api.xAuthToken
       },
       credentials: 'same-origin'
     })

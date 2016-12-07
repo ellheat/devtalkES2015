@@ -1,20 +1,20 @@
 import React, {Component, PropTypes} from 'react';
-import {FormattedMessage} from 'react-intl';
-import Paper from 'material-ui/Paper';
 import shallowCompare from 'react-addons-shallow-compare';
 import pick from 'lodash/pick';
+import {FormattedMessage} from 'react-intl';
+import Paper from 'material-ui/Paper';
 
-import {ES2015Table} from '../../widgets/es2015Table';
+import {CompetitionTable} from '../../widgets/competitionTable';
 
 const headerStyle = {textAlign: 'center'};
 
-export class Home extends Component {
+export class Competition extends Component {
   componentDidMount() {
-    this.props.getCompetitions();
+    this.props.getCompetition(this.props.routeParams.id);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const compareProps = ['competitions'];
+    const compareProps = ['competition'];
     return shallowCompare({
       props: pick(this.props, compareProps),
       state: this.state
@@ -22,15 +22,15 @@ export class Home extends Component {
   }
 
   render() {
-    if (this.props.competitions) {
+    if (this.props.competition) {
       return (
-        <div className="home">
+        <div className="competition">
           <h1 style={{...headerStyle}}>
-            <FormattedMessage id="league"/>
+            <FormattedMessage id="competition"/>
           </h1>
 
           <Paper zDepth={1}>
-            <ES2015Table competitions={this.props.competitions}/>
+            <CompetitionTable competition={this.props.competition.teams}/>
           </Paper>
         </div>
       );
@@ -39,7 +39,7 @@ export class Home extends Component {
   }
 }
 
-Home.PropTypes = {
-  getCompetitions: PropTypes.func,
-  competitions: PropTypes.array
+Competition.PropTypes = {
+  getCompetition: PropTypes.func,
+  competition: PropTypes.array
 };

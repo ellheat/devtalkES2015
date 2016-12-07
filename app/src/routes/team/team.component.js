@@ -2,9 +2,11 @@ import React, {Component, PropTypes} from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import pick from 'lodash/pick';
 
+const logoStyle = {height: '100px'};
+
 export class Team extends Component {
   componentDidMount() {
-    this.props.getTeam(66);
+    this.props.getTeam(this.props.routeParams.id);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -19,7 +21,7 @@ export class Team extends Component {
     if (this.props.team) {
       return (
         <div className="team">
-          <img src={this.props.team.crestUrl} alt=""/>
+          <img style={{...logoStyle}} src={this.props.team.crestUrl} alt=""/>
           <div>{this.props.team.name}</div>
           <div>{this.props.team.squadMarketValue}</div>
         </div>

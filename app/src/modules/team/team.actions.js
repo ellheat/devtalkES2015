@@ -22,6 +22,22 @@ export function getCompetitions() {
   };
 }
 
+export const COMPETITION_REQUEST = 'COMPETITION_REQUEST';
+export const COMPETITION_SUCCESS = 'COMPETITION_SUCCESS';
+export const COMPETITION_FAILURE = 'COMPETITION_FAILURE';
+
+export function getCompetition(id) {
+  return {
+    [CALL_API]: competitionsResource.get(`${id}/teams`, {
+      types: [COMPETITION_REQUEST, COMPETITION_SUCCESS, COMPETITION_FAILURE],
+      headers: {
+        'X-Auth-Token': envConfig.api.xAuthToken
+      },
+      credentials: 'same-origin'
+    })
+  };
+}
+
 export const TEAM_LIST_REQUEST = 'TEAM_LIST_REQUEST';
 export const TEAM_LIST_SUCCESS = 'TEAM_LIST_SUCCESS';
 export const TEAM_LIST_FAILURE = 'TEAM_LIST_FAILURE';

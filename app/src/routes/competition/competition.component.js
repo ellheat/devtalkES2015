@@ -16,26 +16,25 @@ export class Competition extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const compareProps = ['competition'];
     return shallowCompare({
-      props: pick(this.props, compareProps),
-      state: this.state
+      props: pick(this.props, compareProps)
     }, pick(nextProps, compareProps), nextState);
   }
 
   render() {
-    if (this.props.competition) {
-      return (
-        <div className="competition">
-          <h1 style={{...headerStyle}}>
-            <FormattedMessage id="competition"/>
-          </h1>
-
-          <Paper zDepth={1}>
-            <CompetitionTable competition={this.props.competition.teams}/>
-          </Paper>
-        </div>
-      );
+    if (!this.props.competition) {
+      return null;
     }
-    return false;
+    return (
+      <div className="competition">
+        <h1 style={{...headerStyle}}>
+          <FormattedMessage id="competition"/>
+        </h1>
+
+        <Paper zDepth={1}>
+          <CompetitionTable competition={this.props.competition.teams}/>
+        </Paper>
+      </div>
+    );
   }
 }
 

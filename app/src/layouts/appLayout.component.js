@@ -43,7 +43,7 @@ export class AppLayout extends Component {
   }
 
   get links() {
-    const links = [{title: 'Home', url: '/'}];
+    const links = [{title: 'Home', url: '/'}, {title: 'Competitions', url: '/competitions'}];
     return links;
   }
 }

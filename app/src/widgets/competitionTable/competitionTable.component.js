@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {isArray} from 'lodash';
 import {Link} from 'react-router';
@@ -23,8 +23,7 @@ export class CompetitionTable extends Component {
               </TableRow>
             </TableHeader>
             <TableBody stripedRows={true} displayRowCheckbox={false}>
-              {this.props.competition.map((data, i) => {
-                const {name, code, crestUrl, _links} = data;
+              {this.props.competition.map(({name, code, crestUrl, _links}, i) => {
                 const sliceLink = _links.self.href.split('/');
                 const id = sliceLink[sliceLink.length - 1];
                 return (
@@ -46,5 +45,7 @@ export class CompetitionTable extends Component {
 }
 
 if (__DEBUG__) {
-  CompetitionTable.propTypes = {};
+  CompetitionTable.propTypes = {
+    competition: PropTypes.array
+  };
 }

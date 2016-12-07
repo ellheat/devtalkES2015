@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
 
 import {Competition} from './competition.component';
-import {getCompetition} from '../../modules/team';
+import {getCompetition} from '../../modules/competitions';
 
 function mapStateToProps(store) {
   return {
-    competition: store.getIn(['team', 'competition'])
+    competition: store.getIn(['competitions', 'single'])
   };
 }
 

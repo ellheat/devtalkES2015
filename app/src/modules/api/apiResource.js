@@ -1,5 +1,6 @@
 import url from 'url';
 import isEmpty from 'lodash/isEmpty';
+import envConfig from '../../environment/base';
 
 export class APIResource {
   constructor({name, baseURL}) {
@@ -32,10 +33,6 @@ export class APIResource {
       search: false
     });
 
-    const headers = () => {
-      return {...options.headers};
-    };
-
     const getBody = () => {
       if (!json) {
         return options.body;
@@ -47,9 +44,11 @@ export class APIResource {
     return {
       ...options,
       endpoint,
-      headers,
       body: getBody(),
-      credentials: 'same-origin'
+      credentials: 'same-origin',
+      headers: {
+        'X-Auth-Token': envConfig.api.xAuthToken
+      }
     };
   }
 

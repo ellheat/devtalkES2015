@@ -12,22 +12,21 @@ export class Team extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const compareProps = ['team'];
     return shallowCompare({
-      props: pick(this.props, compareProps),
-      state: this.state
+      props: pick(this.props, compareProps)
     }, pick(nextProps, compareProps), nextState);
   }
 
   render() {
-    if (this.props.team) {
-      return (
-        <div className="team">
-          <img style={{...logoStyle}} src={this.props.team.crestUrl} alt=""/>
-          <div>{this.props.team.name}</div>
-          <div>{this.props.team.squadMarketValue}</div>
-        </div>
-      );
+    if (!this.props.team) {
+      return null;
     }
-    return false;
+    return (
+      <div className="team">
+        <img style={{...logoStyle}} src={this.props.team.crestUrl} alt=""/>
+        <div>{this.props.team.name}</div>
+        <div>{this.props.team.squadMarketValue}</div>
+      </div>
+    );
   }
 }
 

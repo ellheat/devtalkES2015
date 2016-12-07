@@ -11,36 +11,36 @@ export class CompetitionTable extends Component {
   }
 
   render() {
-    if (isArray(this.props.competition)) {
-      return (
-        <section className='competitions-table'>
-          <Table allRowsSelected={true}>
-            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-              <TableRow>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Code</TableHeaderColumn>
-                <TableHeaderColumn>Logo</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody stripedRows={true} displayRowCheckbox={false}>
-              {this.props.competition.map(({name, code, crestUrl, _links}, i) => {
-                const sliceLink = _links.self.href.split('/');
-                const id = sliceLink[sliceLink.length - 1];
-                return (
-                  <TableRow key={i}>
-                    <TableRowColumn><Link to={`/team/${id}`}>{name}</Link>
-                    </TableRowColumn>
-                    <TableRowColumn>{code}</TableRowColumn>
-                    <TableRowColumn><img style={{...logoStyle}} src={crestUrl} alt=""/></TableRowColumn>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </section>
-      );
+    if (!isArray(this.props.competition)) {
+      return null;
     }
-    return false;
+    return (
+      <section className='competitions-table'>
+        <Table allRowsSelected={true}>
+          <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Code</TableHeaderColumn>
+              <TableHeaderColumn>Logo</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody stripedRows={true} displayRowCheckbox={false}>
+            {this.props.competition.map(({name, code, crestUrl, _links}, i) => {
+              const sliceLink = _links.self.href.split('/');
+              const id = sliceLink[sliceLink.length - 1];
+              return (
+                <TableRow key={i}>
+                  <TableRowColumn><Link to={`/team/${id}`}>{name}</Link>
+                  </TableRowColumn>
+                  <TableRowColumn>{code}</TableRowColumn>
+                  <TableRowColumn><img style={{...logoStyle}} src={crestUrl} alt=""/></TableRowColumn>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </section>
+    );
   }
 }
 

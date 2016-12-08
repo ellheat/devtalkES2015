@@ -26,9 +26,10 @@ export class AppLayout extends Component {
 
   changeDate() {
     const language = this.state.changeState ? 'en-EN' : 'pl-PL';
-    this.state.date = `${language}: ${(new Intl.DateTimeFormat(language)).format(new Date())}`;
-    this.state.changeState = !this.state.changeState;
-    this.forceUpdate();
+    this.setState({
+      date: `${language}: ${(new Intl.DateTimeFormat(language)).format(new Date())}`,
+      changeState: !this.state.changeState
+    });
   }
 
   render() {
@@ -37,7 +38,7 @@ export class AppLayout extends Component {
         <AppBar title='ESSports'
                 onLeftIconButtonTouchTap={() => this.handleToggle()}
                 iconElementRight={<FlatButton><span>{this.state.date}</span></FlatButton>}
-                onRightIconButtonTouchTap={this.changeDate.bind(this)}
+                onRightIconButtonTouchTap={() => this.changeDate()}
         />
 
         <Drawer open={this.state.open} docked={false} onRequestChange={(open) => this.setState({open})}>

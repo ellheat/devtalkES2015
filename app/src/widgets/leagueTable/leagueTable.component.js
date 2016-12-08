@@ -11,10 +11,9 @@ export class LeagueTable extends Component {
   }
 
   showOnlyFirstPosition() {
-    this.state.league = [this.state.league.find(data => {
-      return data.rank ? data.rank === 1 : data.position === 1;
-    })];
-    this.forceUpdate();
+    this.setState({
+      league: [this.state.league.find(data => data.rank ? data.rank === 1 : data.position === 1)]
+    });
   }
 
   render() {
@@ -23,7 +22,7 @@ export class LeagueTable extends Component {
     }
     return (
       <section className='competitions-table'>
-        <button onClick={this.showOnlyFirstPosition.bind(this)}>Show only first position</button>
+        <button onClick={() => this.showOnlyFirstPosition()}>Show only first position</button>
         <Table allRowsSelected={false}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>

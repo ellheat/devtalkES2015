@@ -17,7 +17,6 @@ export class StringRepeating extends Component {
 
   drawGoal(event) {
     this.setState({goal: 'Goal! '.repeat(event.target.value)});
-    this.forceUpdate();
   }
 
   render() {
@@ -30,7 +29,7 @@ export class StringRepeating extends Component {
           <TextField
             type="number"
             hintText="How many?"
-            onChange={this.drawGoal.bind(this)}
+            onChange={(e) => this.drawGoal(e)}
           /><br />
           <div>{this.state.goal}</div>
         </div>

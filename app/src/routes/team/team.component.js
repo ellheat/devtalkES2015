@@ -13,7 +13,6 @@ export class Team extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const compareProps = ['team', 'players', 'randomPlayer'];
-    console.log(this.props.players);
     if (nextProps.players !== this.props.players) {
       this.props.setRandomPlayer(this.getRandomPlayer(nextProps.players));
     }

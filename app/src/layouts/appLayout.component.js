@@ -57,7 +57,10 @@ export class AppLayout extends Component {
   }
 
   get links() {
-    const links = [{title: 'Home', url: '/'}, {title: 'Competitions', url: '/competitions'}];
+    const links = [{title: 'Home', url: '/'}, {title: 'Competitions', url: '/competitions'}, {
+      title: 'String-repeating',
+      url: '/string-repeating'
+    }];
     return links;
   }
 }

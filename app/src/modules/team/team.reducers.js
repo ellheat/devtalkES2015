@@ -20,8 +20,8 @@ export const teamReducer = createReducer(initialState, {
   [TEAM_SUCCESS](state, {payload}) {
     return state.setIn(['single'], payload);
   },
-  [TEAM_PLAYER_LIST_SUCCESS](state, {payload}) {
-    return state.setIn(['players'], payload);
+  [TEAM_PLAYER_LIST_SUCCESS](state, {payload: {players}} = {}) {
+    return state.setIn(['players'], players);
   },
   [SET_RANDOM_PLAYER](state, {payload}) {
     return state.setIn(['randomPlayer'], payload);

@@ -27,3 +27,15 @@ export function getCompetition(id) {
     })
   };
 }
+
+export const COMPETITION_LEAGUE_TABLE_REQUEST = 'COMPETITION_LEAGUE_TABLE_REQUEST';
+export const COMPETITION_LEAGUE_TABLE_SUCCESS = 'COMPETITION_LEAGUE_TABLE_SUCCESS';
+export const COMPETITION_LEAGUE_TABLE_FAILURE = 'COMPETITION_LEAGUE_TABLE_FAILURE';
+
+export function getCompetitionLeagueTable(id) {
+  return {
+    [CALL_API]: competitionsResource.get(`${id}/leagueTable`, {
+      types: [COMPETITION_LEAGUE_TABLE_REQUEST, COMPETITION_LEAGUE_TABLE_SUCCESS, COMPETITION_LEAGUE_TABLE_FAILURE]
+    })
+  };
+}

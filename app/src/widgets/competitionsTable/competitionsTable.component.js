@@ -29,12 +29,12 @@ export class CompetitionsTable extends Component {
               const {league, caption, numberOfGames, numberOfMatchdays, numberOfTeams, id} = data;
               return (
                 <TableRow key={i}>
-                  <TableRowColumn><Link to={`competition/${id}`}>{caption}</Link>
+                  <TableRowColumn><Link to={`league/${id}`}>{caption}</Link>
                   </TableRowColumn>
                   <TableRowColumn>{league}</TableRowColumn>
                   <TableRowColumn>{numberOfGames}</TableRowColumn>
                   <TableRowColumn>{numberOfMatchdays}</TableRowColumn>
-                  <TableRowColumn>{numberOfTeams}</TableRowColumn>
+                  <TableRowColumn><Link to={`competition/${id}`}>{numberOfTeams}</Link></TableRowColumn>
                 </TableRow>
               );
             })}

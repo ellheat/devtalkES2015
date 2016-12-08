@@ -2,13 +2,18 @@ import React, {Component, PropTypes} from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
+import FlatButton from 'material-ui/FlatButton';
 import {Link} from 'react-router';
 
 export class AppLayout extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {open: false};
+    this.state = {
+      open: false,
+      changeState: false,
+      date: `en-EN: ${(new Intl.DateTimeFormat('en-EN')).format(new Date())}`
+    };
   }
 
   handleToggle() {
@@ -19,12 +24,21 @@ export class AppLayout extends Component {
     this.setState({open: false});
   }
 
+  changeDate() {
+    const language = this.state.changeState ? 'en-EN' : 'pl-PL';
+    this.state.date = `${language}: ${(new Intl.DateTimeFormat(language)).format(new Date())}`;
+    this.state.changeState = !this.state.changeState;
+    this.forceUpdate();
+  }
+
   render() {
     return (
-      <section className="app-layout">
-        <AppBar title="ESSports"
-                iconClassNameRight="muidocs-icon-navigation-expand-more"
-                onLeftIconButtonTouchTap={() => this.handleToggle()}/>
+      <section className='app-layout'>
+        <AppBar title='ESSports'
+                onLeftIconButtonTouchTap={() => this.handleToggle()}
+                iconElementRight={<FlatButton><span>{this.state.date}</span></FlatButton>}
+                onRightIconButtonTouchTap={this.changeDate.bind(this)}
+        />
 
         <Drawer open={this.state.open} docked={false} onRequestChange={(open) => this.setState({open})}>
           {

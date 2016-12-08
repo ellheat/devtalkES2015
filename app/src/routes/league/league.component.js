@@ -40,23 +40,23 @@ export class League extends Component {
           </Paper>
         </div>
       );
-    } else {
-      return (
-        <div className="league">
-          <h1 style={{...headerStyle}}>
-            {this.props.league.leagueCaption}
-          </h1>
-          {map(this.props.league.standings, (data, i) => {
-            return (
-              <Paper key={i} zDepth={1}>
-                <h1 style={{...headerStyle}}>{i}</h1>
-                <LeagueTable league={data}/>
-              </Paper>
-            );
-          })}
-        </div>
-      );
     }
+
+    return (
+      <div className="league">
+        <h1 style={{...headerStyle}}>
+          {this.props.league.leagueCaption}
+        </h1>
+        {map(this.props.league.standings, (data, i) => {
+          return (
+            <Paper key={i} zDepth={1}>
+              <h1 style={{...headerStyle}}>{i}</h1>
+              <LeagueTable league={data}/>
+            </Paper>
+          );
+        })}
+      </div>
+    );
   }
 }
 

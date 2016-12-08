@@ -20,8 +20,9 @@ export class Team extends Component {
     }, pick(nextProps, compareProps), nextState);
   }
 
+  /* eslint-disable */
   getRandomPlayer(playerList) {
-    function* random () {
+    function* random() {
       while (true) {
         yield Math.floor(Math.random() * playerList.count);
       }
@@ -32,6 +33,7 @@ export class Team extends Component {
       return playerList.players[rand.next().value];
     }
   }
+  /* eslint-enable */
 
   render() {
     if (!this.props.team && !this.props.players && !this.props.randomPlayer) {

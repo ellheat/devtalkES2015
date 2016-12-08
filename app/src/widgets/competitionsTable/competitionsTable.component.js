@@ -14,7 +14,7 @@ export class CompetitionsTable extends Component {
     }
     return (
       <section className='es2015-table'>
-        <Table allRowsSelected={true}>
+        <Table allRowsSelected={false}>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
             <TableRow>
               <TableHeaderColumn>Name</TableHeaderColumn>
